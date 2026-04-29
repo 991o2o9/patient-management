@@ -1,5 +1,6 @@
 package com.amin.patientservice.service;
 
+import com.amin.patientservice.dto.PatientRequestDto;
 import com.amin.patientservice.dto.PatientResponseDto;
 import com.amin.patientservice.mapper.PatientMapper;
 import com.amin.patientservice.model.Patient;
@@ -19,5 +20,10 @@ public class PatientService {
         List<Patient> patients = patientRepository.findAll();
         return patients.stream()
                 .map(PatientMapper::toDto).toList();
+    }
+
+    public PatientResponseDto createPatient(PatientRequestDto patientRequestDto){
+        Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDto));
+        return PatientMapper.toDto(newPatient);
     }
 }
