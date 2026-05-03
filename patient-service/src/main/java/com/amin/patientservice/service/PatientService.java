@@ -24,7 +24,7 @@ public class PatientService {
     public List<PatientResponseDto> getPatients() {
         List<Patient> patients = patientRepository.findAll();
         return patients.stream().map(PatientMapper::toDto).toList();
-    }
+    }       
 
     public PatientResponseDto createPatient(PatientRequestDto patientRequestDto) {
         if (patientRepository.existsByEmail(patientRequestDto.getEmail())) {
